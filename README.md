@@ -49,6 +49,10 @@ A single-page CV generator where users enter personal, educational, and practica
 - JavaScript
 - HTML and CSS
 
+## Visualization
+
+<img width="1170" height="1149" alt="localhost_5173_" src="https://github.com/user-attachments/assets/d9e99215-cd2f-49b7-83bb-da8f0b46091d" />
+
 ---
 
 Project built following: [The Odin Project - CV Application](https://www.theodinproject.com/lessons/node-path-react-new-cv-application)

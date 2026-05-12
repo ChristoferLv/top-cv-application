@@ -1,7 +1,20 @@
 export default function PersonalInformation({ data, handler: handlePersonalInfo }) {
+
+    function handleFileClick() {
+        document.querySelector("#fileSelector").click();
+    }
+
     return <>
         <h1>Personal Information</h1>
         <div className="inputs">
+            <label>
+                <img src={data.url || "../public/Portrait_Placeholder.png"} alt="" />
+                <div className="picture-space">
+                    <input type="file" name="picture" onChange={handlePersonalInfo} id="fileSelector" />
+                    <button className="file" onClick={handleFileClick}>Select File</button>
+                    <p>Selected file: {data.picture}</p>
+                </div>
+            </label>
             <label>
                 Name
                 <input type="text" name="name" id="name" value={data.name} onChange={handlePersonalInfo} />
@@ -16,7 +29,7 @@ export default function PersonalInformation({ data, handler: handlePersonalInfo 
             </label>
             <label>
                 Phone
-                <input type="text" name="phone" id="prone" value={data.phone} onChange={handlePersonalInfo} />
+                <input type="text" name="phone" id="phone" value={data.phone} onChange={handlePersonalInfo} />
             </label>
         </div>
     </>

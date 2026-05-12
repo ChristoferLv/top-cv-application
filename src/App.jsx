@@ -9,7 +9,7 @@ import PraticalInformation from './components/PraticalInfo'
 import CurriculumView from './components/CVView'
 
 function App() {
-  const [personalInformation, setPersonalInformation] = useState({ name: "", lastName: "", email: "", phone: "" });
+  const [personalInformation, setPersonalInformation] = useState({ name: "", lastName: "", email: "", phone: "", picture: "" });
   const [educationalInformation, setEducationalInformation] = useState({ school: "", degree: "", startDateStudy: "", endDateStudy: "" });
   const [praticalInformation, setPraticalInformation] = useState({ company: "", position: "", responsibilities: "", startDatePratical: "", endDatePratical: "" });
 
@@ -19,11 +19,11 @@ function App() {
   console.log(educationalInformation)
   console.log(praticalInformation)
   console.log({ ...personalInformation, ...educationalInformation, ...praticalInformation })
-
+  console.log(personalInformation.picture.split("\\").at(-1))
 
   function handleEditing() {
     setIsEditing(!isEditing);
-     window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }
 
   /**
@@ -31,6 +31,11 @@ function App() {
    * @param {React.ChangeEvent<HTMLInputElement>} event 
    */
   function handlePersonalInfo(event) {
+    if (event.target.name == "picture") {
+      const url = URL.createObjectURL(event.target.files[0]);
+      setPersonalInformation({ ...personalInformation, "picture": event.target.value.split("\\").at(-1), "url": url });
+      return;
+    }
     const whoChanged = event.target;
     setPersonalInformation({ ...personalInformation, [whoChanged.name]: whoChanged.value });
   }

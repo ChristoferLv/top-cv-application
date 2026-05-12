@@ -3,6 +3,7 @@ export default function CurriculumView({ data, gotoEdit }) {
         <div className="curriculum">
             <h1>Curriculum Vitæ</h1>
             <h2>Personal information</h2>
+            {data.url && <img src={data.url} alt="" />}
             <h3>Name: {data.name + " " + data.lastName}</h3>
             <h3>Email: {data.email}</h3>
             <h3>Phone: {data.phone}</h3>

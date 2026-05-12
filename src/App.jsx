@@ -9,21 +9,30 @@ import PraticalInformation from './components/PraticalInfo'
 import CurriculumView from './components/CVView'
 
 function App() {
-  const [personalInformation, setPersonalInformation] = useState({ name: "", lastName: "", email: "", phone: "", picture: "" });
-  const [educationalInformation, setEducationalInformation] = useState({ school: "", degree: "", startDateStudy: "", endDateStudy: "" });
-  const [praticalInformation, setPraticalInformation] = useState({ company: "", position: "", responsibilities: "", startDatePratical: "", endDatePratical: "" });
+  const [personalInformation, setPersonalInformation] = useState({ id: 1, name: "", lastName: "", email: "", phone: "", picture: "", url:"" });
+  const [educationalInformation, setEducationalInformation] = useState([{ id: 0, school: "", degree: "", startDateStudy: "", endDateStudy: "" }]);
+  const [praticalInformation, setPraticalInformation] = useState([{ id: 0, company: "", position: "", responsibilities: "", startDatePratical: "", endDatePratical: "" }]);
 
   const [isEditing, setIsEditing] = useState(true);
 
   console.log(personalInformation)
-  console.log(educationalInformation)
+  console.log("educational arr", educationalInformation)
   console.log(praticalInformation)
   console.log({ ...personalInformation, ...educationalInformation, ...praticalInformation })
-  console.log(personalInformation.picture.split("\\").at(-1))
+  // console.log(personalInformation.picture.split("\\").at(-1))
 
   function handleEditing() {
     setIsEditing(!isEditing);
     window.scrollTo(0, 0);
+  }
+
+  function handleAddMore(sectionName) {
+    if (sectionName == "educational") {
+      setEducationalInformation([...educationalInformation, { id: educationalInformation.length, school: "", degree: "", startDateStudy: "", endDateStudy: "" }])
+    }
+    if (sectionName == "pratical") {
+      setPraticalInformation([...praticalInformation, { id: praticalInformation.length, company: "", position: "", responsibilities: "", startDatePratical: "", endDatePratical: "" }])
+    }
   }
 
   /**
@@ -46,7 +55,14 @@ function App() {
    */
   function handleEducationalInfo(event) {
     const whoChanged = event.target;
-    setEducationalInformation({ ...educationalInformation, [whoChanged.name]: whoChanged.value });
+    const id = event.target.parentElement.parentElement.id;
+    setEducationalInformation(
+      educationalInformation.map((item) => {
+        if (item.id == id)
+          return { ...(educationalInformation[id]), [whoChanged.name]: whoChanged.value }
+        return item
+      })
+    );
   }
 
   /**
@@ -55,7 +71,14 @@ function App() {
    */
   function handlePraticalInfo(event) {
     const whoChanged = event.target;
-    setPraticalInformation({ ...praticalInformation, [whoChanged.name]: whoChanged.value });
+    const id = event.target.parentElement.parentElement.id;
+    setPraticalInformation(
+      praticalInformation.map((item) => {
+        if (item.id == id)
+          return { ...(praticalInformation[id]), [whoChanged.name]: whoChanged.value }
+        return item
+      })
+    );
   }
 
   return (
@@ -65,25 +88,34 @@ function App() {
           -⎽__⎽-⎻⎺⎺⎻-⎽__⎽--⎻⎺⎺⎻- CV GENERATOR -⎽__⎽-⎻⎺⎺⎻-⎽__⎽--⎻⎺⎺⎻-
         </p>
       </header>
-      {isEditing ? (<> <section>
-        <PersonalInformation data={personalInformation} handler={handlePersonalInfo} />
-      </section>
-
-        <hr />
-
+      {isEditing ? (<>
         <section>
-          <EducationalInformation data={educationalInformation} handler={handleEducationalInfo} />
+          <PersonalInformation data={personalInformation} handler={handlePersonalInfo} />
         </section>
 
         <hr />
 
         <section>
-          <PraticalInformation data={praticalInformation} handler={handlePraticalInfo} />
+          <h1>Educational Information</h1>
+
+          {educationalInformation.map((item, index) => <><EducationalInformation key={item.id} data={item} handler={handleEducationalInfo} />{(index < educationalInformation.length - 1) && <hr />}</>)}
+
+          <button onClick={() => handleAddMore("educational")}> + </button>
+        </section>
+
+        <hr />
+
+        <section>
+          <h1>Practical Experience</h1>
+
+          {praticalInformation.map((item, index) => <><PraticalInformation key={item.id} data={item} handler={handlePraticalInfo} />{(index < praticalInformation.length - 1) && <hr />} </>)}
+
+          <button onClick={() => handleAddMore("pratical")}> + </button>
         </section>
 
         <button onClick={handleEditing}>Finish</button></>) :
         (<><CurriculumView data={
-          { ...personalInformation, ...educationalInformation, ...praticalInformation }
+          { "personal": personalInformation, "educational": educationalInformation, "pratical": praticalInformation }
         } gotoEdit={handleEditing} /></>)}
 
 

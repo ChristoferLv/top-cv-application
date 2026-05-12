@@ -1,7 +1,6 @@
 export default function PraticalInformation({ data, handler: handlePraticalInfo }) {
     return <>
-        <h1>Practical Experience</h1>
-        <div className="inputs">
+        <div className="inputs" id={data.id}>
             <label>
                 Company name
                 <input type="text" name="company" id="" value={data.company} onChange={handlePraticalInfo} />

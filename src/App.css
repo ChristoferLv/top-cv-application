@@ -6,7 +6,13 @@ body {
 
 hr {
   margin-bottom: 0;
-  margin-top: 25px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  min-width: 100%;
+}
+
+h1{
+  margin-top: 5px;
 }
 
 
@@ -54,6 +60,7 @@ button {
   padding: 0 20px;
   font-size: 20px;
   margin-left: 10px;
+  align-self: flex-start;
 }
 
 .curriculum {
@@ -86,8 +93,20 @@ label > img{
 }
 
 img{
+  display: block;
   width: 130px;
   height: 140px;
   object-fit: fill;
   margin-bottom: 10px;
+}
+
+.info-container{
+  background-color: #e3e3e3;
+  padding: 8px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+
+  h3{
+    margin: 8px;
+  }
 }

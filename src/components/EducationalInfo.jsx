@@ -1,7 +1,6 @@
 export default function EducationalInformation({ data, handler: handleEducationalInfo }) {
     return <>
-        <h1>Educational Information</h1>
-        <div className="inputs">
+        <div className="inputs" id={data.id}>
             <label>
                 School Name
                 <input type="text" name="school" id="" value={data.school} onChange={handleEducationalInfo} />

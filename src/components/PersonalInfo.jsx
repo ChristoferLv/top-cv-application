@@ -10,7 +10,7 @@ export default function PersonalInformation({ data, handler: handlePersonalInfo 
             <label>
                 <img src={data.url || "/Portrait_Placeholder.png"} alt="" />
                 <div className="picture-space">
-                    <input type="file" name="picture" onChange={handlePersonalInfo} id="fileSelector" />
+                    <input type="file" accept="image/*" name="picture" onChange={handlePersonalInfo} id="fileSelector" />
                     <button className="file" onClick={handleFileClick}>Select File</button>
                     <p>Selected file: {data.picture}</p>
                 </div>

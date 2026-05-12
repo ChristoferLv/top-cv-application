@@ -1,12 +1,9 @@
 import { Fragment, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import PersonalInformation from './components/PersonalInfo'
-import './styles/App.css'
 import EducationalInformation from './components/EducationalInfo'
 import PraticalInformation from './components/PraticalInfo'
 import CurriculumView from './components/CVView'
+import './styles/App.css'
 
 function App() {
   const [personalInformation, setPersonalInformation] = useState({ id: 1, name: "", lastName: "", email: "", phone: "", picture: "", url: "" });
@@ -18,15 +15,9 @@ function App() {
 
   const [isEditing, setIsEditing] = useState(true);
 
-  // console.log(personalInformation)
-  console.log("educational arr", educationalInformation)
-  console.log("counter", educationalCounter)
-  // console.log(praticalInformation)
-
   function handleEditing() {
     if (isEditing) {
       const inputs = document.querySelectorAll("input");
-      console.log(inputs)
       const allValid = Array.from(inputs).every((input) => input.reportValidity());
       if (allValid) {
         setIsEditing(false);
@@ -81,7 +72,6 @@ function App() {
   function handleEducationalInfo(event) {
     const whoChanged = event.target;
     const id = event.target.parentElement.parentElement.id;
-    console.log("handle educational", id, whoChanged)
     setEducationalInformation(
       educationalInformation.map((item) => {
         if (item.id == id)

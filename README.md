@@ -1,16 +1,56 @@
-# React + Vite
+# CV Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Curriculum builder project developed as part of the React course from [The Odin Project](https://www.theodinproject.com/lessons/node-path-react-new-cv-application), focused on state management, form handling, and component composition.
 
-Currently, two official plugins are available:
+## Project Objective
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The main goals were to practice:
+- Managing form state with React hooks
+- Splitting a UI into reusable components
+- Adding and removing dynamic form sections
+- Validating input before previewing the final CV
+- Switching between edit and preview modes
 
-## React Compiler
+## What Is It?
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+A single-page CV generator where users enter personal, educational, and practical experience details, then switch to a formatted preview. The app supports multiple entries for education and experience and includes a simple image upload preview.
 
-## Expanding the ESLint configuration
+## How To Use
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Go to the project folder:
+	`cd React/top-cv-application`
+2. Install dependencies:
+	`npm install`
+3. Run the development server:
+	`npm run dev`
+
+## Features
+
+- Personal information form with image upload preview
+- Dynamic education and practical experience sections (add/remove)
+- Required field validation before switching to preview
+- Edit/preview toggle for the final CV output
+- Clear separation between form components and CV view
+
+## File Structure
+
+- `src/App.jsx`: app state, handlers, and view toggle
+- `src/components/PersonalInfo.jsx`: personal data form
+- `src/components/EducationalInfo.jsx`: education entry form
+- `src/components/PraticalInfo.jsx`: practical experience form
+- `src/components/CVView.jsx`: CV preview layout
+- `src/styles/App.css`: app styling
+- `src/main.jsx`: app bootstrap
+
+## Technologies Used
+
+- React
+- Vite
+- JavaScript
+- HTML and CSS
+
+---
+
+Project built following: [The Odin Project - CV Application](https://www.theodinproject.com/lessons/node-path-react-new-cv-application)
+
+📍 **Main repository with all projects**: [ChristoferLv/TheOdinProject](https://github.com/ChristoferLv/TheOdinProject)

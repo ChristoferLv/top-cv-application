@@ -3,21 +3,21 @@ export default function EducationalInformation({ data, handler: handleEducationa
         <div className="inputs" id={data.id}>
             <label>
                 School Name
-                <input type="text" name="school" id="" value={data.school} onChange={handleEducationalInfo} />
+                <input type="text" name="school" id="" value={data.school} onChange={handleEducationalInfo} required />
             </label>
             <label>
                 Degree
-                <input type="text" name="degree" id="" value={data.degree} onChange={handleEducationalInfo} />
+                <input type="text" name="degree" id="" value={data.degree} onChange={handleEducationalInfo} required />
             </label>
             <label>
                 Start date of study
-                <input type="text" name="startDateStudy" id="" value={data.startDateStudy} onChange={handleEducationalInfo} />
+                <input type="date" name="startDateStudy" id="" value={data.startDateStudy} onChange={handleEducationalInfo} required/>
             </label>
             <label>
                 End date of study
-                <input type="text" name="endDateStudy" id="" value={data.endDateStudy} onChange={handleEducationalInfo} />
+                <input type="date" name="endDateStudy" id="" value={data.endDateStudy} onChange={handleEducationalInfo} />
             </label>
-            <button onClick={()=>handleRemove(data.id, "educational")}>Remove</button>
+            <button onClick={() => handleRemove(data.id, "educational")}>Remove</button>
         </div>
     </>
 }

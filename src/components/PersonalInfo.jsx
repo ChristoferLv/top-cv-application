@@ -8,7 +8,7 @@ export default function PersonalInformation({ data, handler: handlePersonalInfo 
         <h1>Personal Information</h1>
         <div className="inputs">
             <label>
-                <img src={data.url || "../public/Portrait_Placeholder.png"} alt="" />
+                <img src={data.url || "/Portrait_Placeholder.png"} alt="" />
                 <div className="picture-space">
                     <input type="file" name="picture" onChange={handlePersonalInfo} id="fileSelector" />
                     <button className="file" onClick={handleFileClick}>Select File</button>
@@ -17,19 +17,19 @@ export default function PersonalInformation({ data, handler: handlePersonalInfo 
             </label>
             <label>
                 Name
-                <input type="text" name="name" id="name" value={data.name} onChange={handlePersonalInfo} />
+                <input type="text" name="name" id="name" value={data.name} onChange={handlePersonalInfo} required/>
             </label>
             <label>
                 Last name
-                <input type="text" name="lastName" id="lastName" value={data.lastName} onChange={handlePersonalInfo} />
+                <input type="text" name="lastName" id="lastName" value={data.lastName} onChange={handlePersonalInfo} required/>
             </label>
             <label>
                 Email
-                <input type="text" name="email" id="email" value={data.email} onChange={handlePersonalInfo} />
+                <input type="email" name="email" id="email" value={data.email} onChange={handlePersonalInfo} required/>
             </label>
             <label>
                 Phone
-                <input type="text" name="phone" id="phone" value={data.phone} onChange={handlePersonalInfo} />
+                <input type="text" name="phone" id="phone" value={data.phone} onChange={handlePersonalInfo} required/>
             </label>
         </div>
     </>

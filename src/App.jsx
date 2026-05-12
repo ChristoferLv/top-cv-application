@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import PersonalInformation from './components/PersonalInfo'
-import './App.css'
+import './styles/App.css'
 import EducationalInformation from './components/EducationalInfo'
 import PraticalInformation from './components/PraticalInfo'
 import CurriculumView from './components/CVView'
@@ -24,8 +24,18 @@ function App() {
   // console.log(praticalInformation)
 
   function handleEditing() {
-    setIsEditing(!isEditing);
-    window.scrollTo(0, 0);
+    if (isEditing) {
+      const inputs = document.querySelectorAll("input");
+      console.log(inputs)
+      const allValid = Array.from(inputs).every((input) => input.reportValidity());
+      if (allValid) {
+        setIsEditing(false);
+        window.scrollTo(0, 0);
+      }
+    } else {
+      setIsEditing(true);
+      window.scrollTo(0, 0);
+    }
   }
 
   function handleAddMore(sectionName) {
@@ -114,7 +124,7 @@ function App() {
         <section>
           <h1>Educational Information</h1>
 
-          {educationalInformation.map((item, index) => <Fragment key={"frag-"+item.id}><EducationalInformation key={item.id} data={item} handler={handleEducationalInfo} handleRemove={handleRemove} />{(index < educationalInformation.length - 1) && <hr />}</Fragment>)}
+          {educationalInformation.map((item, index) => <Fragment key={"frag-" + item.id}><EducationalInformation key={item.id} data={item} handler={handleEducationalInfo} handleRemove={handleRemove} />{(index < educationalInformation.length - 1) && <hr />}</Fragment>)}
 
           <button onClick={() => handleAddMore("educational")}> + </button>
         </section>
@@ -124,7 +134,7 @@ function App() {
         <section>
           <h1>Practical Experience</h1>
 
-          {praticalInformation.map((item, index) => <Fragment key={"frag-"+item.id}><PraticalInformation key={item.id} data={item} handler={handlePraticalInfo} handleRemove={handleRemove} />{(index < praticalInformation.length - 1) && <hr />} </Fragment>)}
+          {praticalInformation.map((item, index) => <Fragment key={"frag-" + item.id}><PraticalInformation key={item.id} data={item} handler={handlePraticalInfo} handleRemove={handleRemove} />{(index < praticalInformation.length - 1) && <hr />} </Fragment>)}
 
           <button onClick={() => handleAddMore("pratical")}> + </button>
         </section>

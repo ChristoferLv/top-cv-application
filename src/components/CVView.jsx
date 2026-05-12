@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 
 export default function CurriculumView({ data, gotoEdit }) {
-    console.log("view data", data)
     return (<>
         <div className="curriculum">
             <h1>Curriculum Vitæ</h1>
@@ -17,7 +16,7 @@ export default function CurriculumView({ data, gotoEdit }) {
             {data.educational.map((item) => <div className="info-container" key={item.id}>
                 <h3>School: {item.school}</h3>
                 <h3>Degree: {item.degree}</h3>
-                <h3>Period: {item.startDateStudy} – {item.endDateStudy}</h3>
+                <h3>Period: {item.startDateStudy} – {item.endDateStudy||"now"}</h3>
             </div >)}
 
             <h2>Pratical Information</h2>
@@ -25,7 +24,7 @@ export default function CurriculumView({ data, gotoEdit }) {
                 <h3>Company: {item.company}</h3>
                 <h3>Position: {item.position}</h3>
                 <h3>Responsibilities: {item.responsibilities}</h3>
-                <h3>Period: {item.startDatePratical} – {item.endDatePratical}</h3>
+                <h3>Period: {item.startDatePratical} – {item.endDatePratical || "current"}</h3>
             </div >)}
 
 

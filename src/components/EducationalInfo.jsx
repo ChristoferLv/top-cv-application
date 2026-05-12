@@ -1,4 +1,4 @@
-export default function EducationalInformation({ data, handler: handleEducationalInfo }) {
+export default function EducationalInformation({ data, handler: handleEducationalInfo, handleRemove }) {
     return <>
         <div className="inputs" id={data.id}>
             <label>
@@ -17,6 +17,7 @@ export default function EducationalInformation({ data, handler: handleEducationa
                 End date of study
                 <input type="text" name="endDateStudy" id="" value={data.endDateStudy} onChange={handleEducationalInfo} />
             </label>
+            <button onClick={()=>handleRemove(data.id, "educational")}>Remove</button>
         </div>
     </>
 }

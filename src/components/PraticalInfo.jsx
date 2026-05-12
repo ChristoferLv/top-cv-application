@@ -1,4 +1,4 @@
-export default function PraticalInformation({ data, handler: handlePraticalInfo }) {
+export default function PraticalInformation({ data, handler: handlePraticalInfo, handleRemove }) {
     return <>
         <div className="inputs" id={data.id}>
             <label>
@@ -21,6 +21,7 @@ export default function PraticalInformation({ data, handler: handlePraticalInfo 
                 End Date
                 <input type="text" name="endDatePratical" id="" value={data.endDatePratical} onChange={handlePraticalInfo} />
             </label>
+            <button onClick={()=>handleRemove(data.id, "pratical")}>Remove</button>
         </div>
     </>
 }

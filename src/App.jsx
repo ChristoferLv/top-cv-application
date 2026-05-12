@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -9,17 +9,19 @@ import PraticalInformation from './components/PraticalInfo'
 import CurriculumView from './components/CVView'
 
 function App() {
-  const [personalInformation, setPersonalInformation] = useState({ id: 1, name: "", lastName: "", email: "", phone: "", picture: "", url:"" });
+  const [personalInformation, setPersonalInformation] = useState({ id: 1, name: "", lastName: "", email: "", phone: "", picture: "", url: "" });
   const [educationalInformation, setEducationalInformation] = useState([{ id: 0, school: "", degree: "", startDateStudy: "", endDateStudy: "" }]);
   const [praticalInformation, setPraticalInformation] = useState([{ id: 0, company: "", position: "", responsibilities: "", startDatePratical: "", endDatePratical: "" }]);
 
+  const [educationalCounter, setEducationalCounter] = useState(0);
+  const [praticalCounter, setPraticalCounter] = useState(0);
+
   const [isEditing, setIsEditing] = useState(true);
 
-  console.log(personalInformation)
+  // console.log(personalInformation)
   console.log("educational arr", educationalInformation)
-  console.log(praticalInformation)
-  console.log({ ...personalInformation, ...educationalInformation, ...praticalInformation })
-  // console.log(personalInformation.picture.split("\\").at(-1))
+  console.log("counter", educationalCounter)
+  // console.log(praticalInformation)
 
   function handleEditing() {
     setIsEditing(!isEditing);
@@ -28,10 +30,23 @@ function App() {
 
   function handleAddMore(sectionName) {
     if (sectionName == "educational") {
-      setEducationalInformation([...educationalInformation, { id: educationalInformation.length, school: "", degree: "", startDateStudy: "", endDateStudy: "" }])
+      const newId = educationalCounter + 1;
+      setEducationalInformation([...educationalInformation, { id: newId, school: "", degree: "", startDateStudy: "", endDateStudy: "" }]);
+      setEducationalCounter(newId);
     }
     if (sectionName == "pratical") {
-      setPraticalInformation([...praticalInformation, { id: praticalInformation.length, company: "", position: "", responsibilities: "", startDatePratical: "", endDatePratical: "" }])
+      const newId = praticalCounter + 1;
+      setPraticalInformation([...praticalInformation, { id: newId, company: "", position: "", responsibilities: "", startDatePratical: "", endDatePratical: "" }])
+      setPraticalCounter(newId);
+    }
+  }
+
+  function handleRemove(id, sectionName) {
+    if (sectionName == "educational") {
+      setEducationalInformation([...educationalInformation.filter((item) => item.id != id)]);
+    }
+    if (sectionName == "pratical") {
+      setPraticalInformation([...praticalInformation.filter((item) => item.id != id)])
     }
   }
 
@@ -56,10 +71,11 @@ function App() {
   function handleEducationalInfo(event) {
     const whoChanged = event.target;
     const id = event.target.parentElement.parentElement.id;
+    console.log("handle educational", id, whoChanged)
     setEducationalInformation(
       educationalInformation.map((item) => {
         if (item.id == id)
-          return { ...(educationalInformation[id]), [whoChanged.name]: whoChanged.value }
+          return { ...item, [whoChanged.name]: whoChanged.value }
         return item
       })
     );
@@ -75,7 +91,7 @@ function App() {
     setPraticalInformation(
       praticalInformation.map((item) => {
         if (item.id == id)
-          return { ...(praticalInformation[id]), [whoChanged.name]: whoChanged.value }
+          return { ...item, [whoChanged.name]: whoChanged.value }
         return item
       })
     );
@@ -98,7 +114,7 @@ function App() {
         <section>
           <h1>Educational Information</h1>
 
-          {educationalInformation.map((item, index) => <><EducationalInformation key={item.id} data={item} handler={handleEducationalInfo} />{(index < educationalInformation.length - 1) && <hr />}</>)}
+          {educationalInformation.map((item, index) => <Fragment key={"frag-"+item.id}><EducationalInformation key={item.id} data={item} handler={handleEducationalInfo} handleRemove={handleRemove} />{(index < educationalInformation.length - 1) && <hr />}</Fragment>)}
 
           <button onClick={() => handleAddMore("educational")}> + </button>
         </section>
@@ -108,7 +124,7 @@ function App() {
         <section>
           <h1>Practical Experience</h1>
 
-          {praticalInformation.map((item, index) => <><PraticalInformation key={item.id} data={item} handler={handlePraticalInfo} />{(index < praticalInformation.length - 1) && <hr />} </>)}
+          {praticalInformation.map((item, index) => <Fragment key={"frag-"+item.id}><PraticalInformation key={item.id} data={item} handler={handlePraticalInfo} handleRemove={handleRemove} />{(index < praticalInformation.length - 1) && <hr />} </Fragment>)}
 
           <button onClick={() => handleAddMore("pratical")}> + </button>
         </section>

@@ -1,6 +1,6 @@
 # CV Application
 
-Curriculum builder project developed as part of the React course from [The Odin Project](https://www.theodinproject.com/lessons/node-path-react-new-cv-application), focused on state management, form handling, and component composition.
+Curriculum builder project developed as part of the React course from [The Odin Project](https://www.theodinproject.com/paths/full-stack-javascript/courses/react), focused on state management, form handling, and component composition.
 
 ## Project Objective
 
